@@ -1,0 +1,21 @@
+clc
+clear all
+addpath(genpath(pwd))
+folder='C:\Users\kamru\OneDrive - Texas Tech University\Desktop\Fall 2020\Smartfit Algorithm\simulated_database\hourglass\';
+%%
+    I=imread(strcat(folder, '1 (4)', '.jpg'));
+    I=rgb2gray(I);
+    imshow(I);
+    I2=edge(I, 'sobel');
+    imshow(I2);
+    %
+        I3=rgb2gray(imread(strcat(folder, '', '.jpg')));
+        filter= rgb2gray(imread(strcat(folder, '9x9', '.jpg')));
+    I4= conv2 (I3, filter, 'full');
+    imshow(I4)
+    
+    %%
+    
+points = detectSURFFeatures(I);
+imshow(I3); hold on;
+plot(points.selectStrongest(40));
